@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Counter App</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .counter-container {
+            text-align: center;
+        }
+
+       {
+            font-size: 3rem;
+        }
+
+        {
+            padding: 10px 20px;
+            font-size: 1rem;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="counter-container">
+        <h1 id="counter">0</h1>
+        <button id="increment-btn">Click Me!</button>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const counter = document.getElementById('counter');
+            const incrementBtn = document.getElementById('increment-btn');
+            
+            let count = 0;
+            
+            incrementBtn.addEventListener('click', function() {
+                count++;
+                counter.textContent = count;
+            });
+        });
+    </script>
+</body>
+</html>
