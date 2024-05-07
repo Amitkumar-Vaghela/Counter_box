@@ -1,9 +1,11 @@
+Tricolor Tracker
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Counter App</title>
+    <title>Indian Flag Counter App</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -12,17 +14,35 @@
             align-items: center;
             height: 100vh;
             margin: 0;
+            background: linear-gradient(90deg, #ff9933 33.33%, white 33.33%, white 66.66%, #138808 66.66%);
+          
         }
 
         .counter-container {
             text-align: center;
+            color: #000;
         }
 
-       {
+        h1 {
             font-size: 3rem;
+            margin-bottom: 10px;
         }
 
-        {
+        p {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+        }
+
+        input[type="number"] {
+            padding: 10px 20px;
+            font-size: 1rem;
+            border: none;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            width: 200px;
+        }
+
+        button {
             padding: 10px 20px;
             font-size: 1rem;
             background-color: #007bff;
@@ -31,29 +51,94 @@
             border-radius: 5px;
             cursor: pointer;
             transition: background-color 0.3s ease;
+            margin: 0 10px;
         }
 
-        {
+        button:hover {
             background-color: #0056b3;
+           
         }
     </style>
 </head>
 <body>
     <div class="counter-container">
         <h1 id="counter">0</h1>
-        <button id="increment-btn">Click Me!</button>
+        <input type="number" id="number-input" placeholder="Enter a number">
+        <p id="counter-string">Zero</p> 
+        <p id="odd-even"></p>
+        <p id="factors"></p> 
+        <p id="permutation"></p>
+        <button id="check-btn">Check</button>
     </div>
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             const counter = document.getElementById('counter');
-            const incrementBtn = document.getElementById('increment-btn');
-            
-            let count = 0;
-            
-            incrementBtn.addEventListener('click', function() {
-                count++;
-                counter.textContent = count;
+            const counterString = document.getElementById('counter-string');
+            const oddEven = document.getElementById('odd-even');
+            const factors = document.getElementById('factors');
+            const permutation = document.getElementById('permutation');
+            const numberInput = document.getElementById('number-input');
+            const checkBtn = document.getElementById('check-btn');
+
+            function updateCounter(num) {
+                counter.textContent = num;
+                counterString.textContent = convertToWords(num);
+                oddEven.textContent = num % 2 === 0 ? 'Even' : 'Odd'; 
+                factors.textContent = num > 0 ? findFactors(num) : ''; 
+                permutation.textContent = checkPermutation(num); 
+            }
+
+            function convertToWords(num) {
+                const ones = ['', 'One', 'Two', 'Three', 'Four', 'Five', 'Six', 'Seven', 'Eight', 'Nine'];
+                const teens = ['Ten', 'Eleven', 'Twelve', 'Thirteen', 'Fourteen', 'Fifteen', 'Sixteen', 'Seventeen', 'Eighteen', 'Nineteen'];
+                const tens = ['', '', 'Twenty', 'Thirty', 'Forty', 'Fifty', 'Sixty', 'Seventy', 'Eighty', 'Ninety'];
+
+                if (num === 0) return 'Zero';
+
+                let words = '';
+
+                if (num >= 100) {
+                    words += ones[Math.floor(num / 100)] + ' Hundred ';
+                    num %= 100;
+                }
+
+                if (num >= 20) {
+                    words += tens[Math.floor(num / 10)] + ' ';
+                    num %= 10;
+                }
+
+                if (num > 0) {
+                    if (num >= 10 && num <= 19) {
+                        words += teens[num - 10];
+                    } else {
+                        words += ones[num];
+                    }
+                }
+
+                return words.trim();
+            }
+
+            function findFactors(num) {
+                const factorsArray = [];
+                for (let i = 1; i <= num; i++) {
+                    if (num % i === 0) {
+                        factorsArray.push(i);
+                    }
+                }
+                return 'Factors: ' + factorsArray.join(', ');
+            }
+
+            function checkPermutation(num) {
+              
+                return ''; 
+            }
+
+            checkBtn.addEventListener('click', function() {
+                const num = parseInt(numberInput.value);
+                if (!isNaN(num)) {
+                    updateCounter(num);
+                }
             });
         });
     </script>
