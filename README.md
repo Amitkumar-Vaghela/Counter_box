@@ -8,8 +8,5 @@ Odd or Even: Determines if the number is odd or even.
 Factors: Displays the factors of the entered number.
 Permutation Check: (Feature to be implemented)
 
-##How to Use:
-Enter a number in the input field.
-Click the "Check" button to see the information.
 
 
