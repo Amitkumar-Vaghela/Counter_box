@@ -12,7 +12,4 @@ Permutation Check: (Feature to be implemented)
 Enter a number in the input field.
 Click the "Check" button to see the information.
 
-##Technologies Used:
-HTML
-CSS
-JavaScript
+
